@@ -13,14 +13,18 @@ cache:
   paths:
   - vendor
 
+.setup: &setup
+  - export
+  - cd Example
+  - rvm use --create 2.6.0@${CI_PROJECT_NAME}
+  - gem install bundler:2.1.1
+  - bundle install --path=/Users/xcodeserver/gitlab-runner/builds/shared/${CI_PROJECT_NAME}/gems
+  - bundle exec pod install || bundle exec pod install --repo-update
+
 prepare_proj:
   stage: prepare
   script:
-    - cd Example
-    - rvm use --create 2.6.0@JSONFactorable
-    - bundle install --path=/Users/xcodeserver/gitlab-runner/builds/shared/JSONFactorable/gems
-    - bundle exec pod install || bundle exec pod install --repo-update
-    - export
+    *setup
   artifacts:
     name: "Bundle_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}_${CI_BUILD_ID}"
     expire_in: 1 day
@@ -34,12 +38,8 @@ prepare_proj:
 test_project:
   stage: build
   before_script:
-    - killall "Simulator" || true
+    *setup
   script:
-    - export
-    - cd Example
-    - rvm use --create 2.6.0@JSONFactorable
-    - bundle install --path=/Users/xcodeserver/gitlab-runner/builds/shared/JSONFactorable/gems
     - bundle exec fastlane test
   after_script:
     - killall "Simulator" || true
@@ -55,11 +55,9 @@ test_project:
 
 deploy_pod:
   stage: deploy
+  before_script:
+    *setup
   script:
-    - export
-    - cd Example
-    - rvm use --create 2.6.0@JSONFactorable
-    - bundle install --path=/Users/xcodeserver/gitlab-runner/builds/shared/JSONFactorable/gems
     - bundle exec fastlane deploy
   artifacts:
     name: "Deploy_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}_${CI_BUILD_ID}"

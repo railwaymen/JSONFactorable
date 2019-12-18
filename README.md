@@ -40,7 +40,7 @@
 
 ### Requirements
 
-- [Bundler](https://bundler.io) 1.16.5
+- [Bundler](https://bundler.io) 2.1.1
 - [Xcode](https://developer.apple.com/xcode/) 11.3 (11C29)
 
 ### Configuration

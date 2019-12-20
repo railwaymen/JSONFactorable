@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'JSONFactorable'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of JSONFactorable.'
+  s.summary          = 'JSONFactorable is cross-platform framework for building decodable objects out of raw, json-convertible values.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,9 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+The framework is for creating object out of raw values. It is very usefull
+  if you want to create decodable structure in tests out of given parameters
+  for easier testing of decodable structures.
                        DESC
 
   s.homepage         = 'https://git.railwaymen.org/open/jsonfactorable'

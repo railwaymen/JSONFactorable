@@ -62,7 +62,7 @@ deploy_pod:
   artifacts:
     name: "Deploy_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}_${CI_BUILD_ID}"
     expire_in: 1 week
-  when: manual
+  when: on_success
   dependencies:
     - test_project
   only:

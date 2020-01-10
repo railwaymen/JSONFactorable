@@ -9,6 +9,14 @@
 import Foundation
 
 extension Date {
+    ///
+    /// Converts date to string basing on given coding strategy.
+    ///
+    /// It encodes the date and decodes it as `String`. It is pretty helpful in encoding date using `JSONFactorable`.
+    ///
+    /// - Parameters:
+    ///   - codingStrategy: Way of encoding and decoding date by `JSONEncoder` and `JSONDecoder`
+    ///
     public func toString(codingStrategy: Date.DateCodingStrategy) throws -> String {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = codingStrategy.encodingStrategy

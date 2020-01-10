@@ -8,7 +8,15 @@
 
 import Foundation
 
+///
+/// The protocol is mostly for internal use, but it cannot be marked as internal.
+/// You shouldn't apply it to your own structures unless you know what you're doing.
+/// Use `JSONObjectType` instead in this case.
+///
 public protocol JSONConvertible {
+    ///
+    /// Returns object acceptable by `JSONSerialization` when parsing to data.
+    ///
     func flatJSONObject() throws -> Any
 }
 

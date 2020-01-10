@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JSONFactorable'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'JSONFactorable is cross-platform framework for building decodable objects out of raw, json-convertible values.'
 
 # This description is used to generate tags and improve search results.

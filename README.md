@@ -24,6 +24,19 @@
 
 4. Add extension to `JSONFactorable` which contains functions used by every factory like `buildObject(of:)` function.
 
+### Merging example
+
+To merge two (or more) objects represatable by a dictionary (or an array) follow the example:
+
+```swift
+var jsonConvertible: AnyJSONConvertible = [
+  "key": AnyJSONConvertible(someValue)
+]
+let mergedJSON = try jsonConvertible.merge(with: AnyJSONConvertible(someObject))
+```
+
+where someObject conforms to JSONObjectType protocol
+
 ### Gems
 
 - [Cocoapods](https://cocoapods.org) 1.8.4

@@ -11,20 +11,57 @@ import Foundation
 public struct AnyJSONConvertible: JSONConvertible {
     private(set) public var base: Any
     
+    ///
+    /// Default initializer
+    ///
+    /// - Parameters:
+    ///   - base: A JSONConvertible value which should be contained by this wrapper
+    ///
     public init<J>(_ base: J) where J: JSONConvertible {
         self.base = base
     }
     
+    ///
+    /// Unwraps base value to JSONConvertible which isn't AnyJSONConvertible.
+    /// Should never throw an error.
+    ///
+    /// - Throws:
+    ///   - `JSONConversionError.baseIsNotJSONConvertible` if base is not JSONConvertible. This indicates internal framework issue.
+    ///
     public func unwrappedValue() throws -> JSONConvertible {
         guard let base = self.base as? JSONConvertible else { throw JSONConversionError.baseIsNotJSONConvertible }
-        guard let wrapper = self.base as? AnyJSONConvertible else { return base }
-        return try wrapper.unwrappedValue()
+        if let jsonObject = self.base as? JSONObjectType {
+            return try jsonObject.jsonConvertible()
+        } else if let wrapper = self.base as? AnyJSONConvertible {
+            return try wrapper.unwrappedValue()
+        }
+        return base
     }
     
+    ///
+    /// Used internally to get flat objects acceptable by the `JSONSerialization` and to parse it to data.
+    ///
+    /// ```
+    /// try AnyJSONConvertible("Some String").flatJSONObject() as? String == "Some String"
+    /// try AnyJSONConvertible(123).flatJSONObject() as? Int == 123
+    /// ```
+    /// - Throws:
+    ///   Rethrows error from base's `flatJSONObject` method
+    ///
     public func flatJSONObject() throws -> Any {
         return try (self.base as? JSONConvertible)?.flatJSONObject() ?? self.base
     }
     
+    ///
+    /// Merges `self` with another `AnyJSONConvertible` and returns it
+    ///
+    /// - Parameters:
+    ///   - otherJSON: second wrapper to merge with
+    ///
+    /// - Throws:
+    ///   - `JSONConversionError.objectsNotMergable` if bases of both wrappers aren't arrays or dictionaries
+    ///   - Rethrows errors from `unwrappedValue` function for both wrappers
+    ///
     public func merge(with otherJSON: AnyJSONConvertible) throws -> AnyJSONConvertible {
         let lhsUnwrapped = try self.unwrappedValue()
         let rhsUnwrapped = try otherJSON.unwrappedValue()

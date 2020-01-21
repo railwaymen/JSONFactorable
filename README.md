@@ -1,6 +1,6 @@
 # JSONFactoryCore
 
-[![build status](https://git.railwaymen.org/open/jsonfactorable/badges/develop/build.svg)](https://git.railwaymen.org/open/jsonfactorable/pipelines) [![Coverage report](https://git.railwaymen.org/open/jsonfactorable/badges/develop/coverage.svg)](https://git.railwaymen.org/open/jsonfactorable/commits/develop) [![Swift](https://img.shields.io/badge/Swift-5.1-green.svg?style=flat)](https://swift.org)
+[![build status](https://git.railwaymen.org/open/jsonfactorable/badges/develop/pipeline.svg)](https://git.railwaymen.org/open/jsonfactorable/pipelines) [![Coverage report](https://git.railwaymen.org/open/jsonfactorable/badges/develop/coverage.svg)](https://git.railwaymen.org/open/jsonfactorable/commits/develop) [![Swift](https://img.shields.io/badge/Swift-5.1-green.svg?style=flat)](https://swift.org)
 
 ## Installation
 
@@ -23,6 +23,19 @@
   ```
 
 4. Add extension to `JSONFactorable` which contains functions used by every factory like `buildObject(of:)` function.
+
+### Merging example
+
+To merge two (or more) objects represatable by a dictionary (or an array) follow the example:
+
+```swift
+var jsonConvertible: AnyJSONConvertible = [
+  "key": AnyJSONConvertible(someValue)
+]
+let mergedJSON = try jsonConvertible.merge(with: AnyJSONConvertible(someObject))
+```
+
+where someObject conforms to JSONObjectType protocol
 
 ### Gems
 

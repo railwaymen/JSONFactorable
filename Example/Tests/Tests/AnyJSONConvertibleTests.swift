@@ -174,4 +174,32 @@ extension AnyJSONConvertibleTests {
             XCTAssertEqual(error as? JSONConversionError, JSONConversionError.objectsNotMergable)
         }
     }
+    
+    func testMerge_wrappedDictionaryWithWrappedObjectConvertibleToDictionary() throws {
+        //Arrange
+        let sut1 = AnyJSONConvertible(["someKey": AnyJSONConvertible("its value")])
+        let sut2 = AnyJSONConvertible(CustomObject(id: 1, name: "My object"))
+        //Act
+        let result = try sut1.merge(with: sut2)
+        //Assert
+        let dict = try XCTUnwrap(result.flatJSONObject() as? [String: Any])
+        XCTAssertEqual(dict["id"] as? Int64, 1)
+        XCTAssertEqual(dict["name"] as? String, "My object")
+        XCTAssertEqual(dict["someKey"] as? String, "its value")
+    }
+}
+
+// MARK: - Structures
+struct CustomObject {
+    let id: Int64
+    let name: String
+}
+
+extension CustomObject: JSONObjectType {
+    func jsonConvertible() throws -> JSONConvertible {
+        return [
+            "id": AnyJSONConvertible(self.id),
+            "name": AnyJSONConvertible(self.name)
+        ]
+    }
 }

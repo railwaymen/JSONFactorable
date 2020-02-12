@@ -31,7 +31,11 @@ public struct AnyJSONConvertible: JSONConvertible {
     public func unwrappedValue() throws -> JSONConvertible {
         guard let base = self.base as? JSONConvertible else { throw JSONConversionError.baseIsNotJSONConvertible }
         if let jsonObject = self.base as? JSONObjectType {
-            return try jsonObject.jsonConvertible()
+            let jsonConvertible = try jsonObject.jsonConvertible()
+            if let wrapper = jsonConvertible as? AnyJSONConvertible {
+                return try wrapper.unwrappedValue()
+            }
+            return jsonConvertible
         } else if let wrapper = self.base as? AnyJSONConvertible {
             return try wrapper.unwrappedValue()
         }

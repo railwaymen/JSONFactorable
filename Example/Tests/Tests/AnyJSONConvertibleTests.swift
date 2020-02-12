@@ -197,9 +197,9 @@ struct CustomObject {
 
 extension CustomObject: JSONObjectType {
     func jsonConvertible() throws -> JSONConvertible {
-        return [
+        return AnyJSONConvertible([
             "id": AnyJSONConvertible(self.id),
             "name": AnyJSONConvertible(self.name)
-        ]
+        ])
     }
 }

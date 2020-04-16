@@ -1,6 +1,8 @@
 # JSONFactoryCore
 
-[![build status](https://git.railwaymen.org/open/jsonfactorable/badges/develop/pipeline.svg)](https://git.railwaymen.org/open/jsonfactorable/pipelines) [![Coverage report](https://git.railwaymen.org/open/jsonfactorable/badges/develop/coverage.svg)](https://git.railwaymen.org/open/jsonfactorable/commits/develop) [![Swift](https://img.shields.io/badge/Swift-5.1-green.svg?style=flat)](https://swift.org)
+
+[![Package Validation Status](https://github.com/railwaymen/JSONFactorable/workflows/Package%20Validation/badge.svg)](https://github.com/railwaymen/JSONFactorable/actions)
+[![Coverage Status](https://coveralls.io/repos/github/railwaymen/JSONFactorable/badge.svg?branch=master)](https://coveralls.io/github/railwaymen/JSONFactorable?branch=master)
 
 ## Installation
 

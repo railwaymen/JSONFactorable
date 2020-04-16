@@ -10,10 +10,10 @@ The framework is for creating object out of raw values. It is very usefull
   for easier testing of decodable structures.
                        DESC
 
-  s.homepage         = 'https://git.railwaymen.org/open/jsonfactorable'
-  s.license          = { :type => 'Custom', :file => 'LICENSE' }
+  s.homepage         = 'https://github.com/railwaymen/JSONFactorable'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bartłomiej Świerad' => 'bartlomiej.swierad@railwaymen.org' }
-  s.source           = { :git => 'ssh://git@git.railwaymen.org:10522/open/jsonfactorable.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/railwaymen/JSONFactorable.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'
 

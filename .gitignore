@@ -46,3 +46,4 @@ Example/fastlane/screenshots/*/*-landscape_framed.png
 
 # Configuration temp directory
 /Configuration/*.xcconfig
+.build

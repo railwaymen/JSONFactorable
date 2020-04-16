@@ -6,8 +6,9 @@ import PackageDescription
 let package = Package(
     name: "JSONFactorable",
     platforms: [
-        .iOS(.v11),
-        .macOS(.v10_12)
+        .iOS(.v10),
+        .macOS(.v10_12),
+        .tvOS(.v10)
     ],
     products: [
         .library(

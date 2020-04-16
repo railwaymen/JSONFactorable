@@ -6,6 +6,12 @@
 
 ## Installation
 
+### Swift Package Manager (recommended)
+
+Add you dependency to the project. For more info about how to do that read [Apple's docs](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+
+### CocoaPods
+
 1. Add pod to your Podfile:
 
   ```ruby
@@ -15,20 +21,24 @@
 2. Install pods:
 
   ```bash
-  bundle exec pod install
+  pod install
   ```
 
-3. Import framework in your project:
+## Usage
+
+1. Import framework in your project:
 
   ```swift
   import JSONFactorable
   ```
 
-4. Add extension to `JSONFactorable` which contains functions used by every factory like `buildObject(of:)` function.
+2. Add extension to `JSONFactorable` which contains functions used by every factory like `buildObject(of:)` function.
+
+3. Looking for more detailed examples of usage look into [Tests folder](./Tests/JSONFactorableTests)
 
 ### Merging example
 
-To merge two (or more) objects represatable by a dictionary (or an array) follow the example:
+To merge two (or more) objects representable by a dictionary (or an array) follow the example:
 
 ```swift
 var jsonConvertible: AnyJSONConvertible = [
@@ -39,35 +49,10 @@ let mergedJSON = try jsonConvertible.merge(with: AnyJSONConvertible(someObject))
 
 where someObject conforms to JSONObjectType protocol
 
-### Gems
-
-- [Cocoapods](https://cocoapods.org) 1.8.4
-- [Fastlane](https://fastlane.tools) 2.137.0 ([README](fastlane/README.md))
-- [Slather](https://github.com/SlatherOrg/slather) 2.4.7
-- [xcode-install](https://github.com/xcpretty/xcode-install) 2.6.3
-- [xcov](https://github.com/nakiostudio/xcov) 1.7.0
-
-### CocoaPods
-
-- [SwiftLint](https://cocoapods.org/pods/SwiftLint) 0.38.0 ([Rules](.swiftlint.yml))
-
 ## Contribution
+
+Feel free to add your pull request or create an issue.
 
 ### Requirements
 
-- [Bundler](https://bundler.io) 2.1.1
-- [Xcode](https://developer.apple.com/xcode/) 11.3 (11C29)
-
-### Configuration
-
-- `bundle install`
-- `bundle exec pod install`
-- Open `*.xcworkspace` in xcode
-
-### Unit tests
-
-- `bundle exec fastlane test`
-
-### Release
-
-Merge changes to `master`. And tag with proper version marked previously in podspec e.g. `1.0.1` Then manually deploy on GitLab
+- [Xcode](https://developer.apple.com/xcode/) 11.3+

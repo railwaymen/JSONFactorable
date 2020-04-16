@@ -1,11 +1,3 @@
-//
-//  JSONPrimitiveConvertibleTests.swift
-//  JSONFactorable_Tests
-//
-//  Created by Bartłomiej Świerad on 18/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import XCTest
 @testable import JSONFactorable
 
@@ -22,7 +14,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Int)
         XCTAssertEqual(result as? Int, sut)
     }
-    
+
     func testFlatJSONObject_int8() throws {
         //Arrange
         let sut: Int8 = 1
@@ -32,7 +24,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Int8)
         XCTAssertEqual(result as? Int8, sut)
     }
-    
+
     func testFlatJSONObject_int16() throws {
         //Arrange
         let sut: Int16 = 1
@@ -42,7 +34,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Int16)
         XCTAssertEqual(result as? Int16, sut)
     }
-    
+
     func testFlatJSONObject_int32() throws {
         //Arrange
         let sut: Int32 = 1
@@ -52,7 +44,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Int32)
         XCTAssertEqual(result as? Int32, sut)
     }
-    
+
     func testFlatJSONObject_int64() throws {
         //Arrange
         let sut: Int64 = 1
@@ -62,7 +54,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Int64)
         XCTAssertEqual(result as? Int64, sut)
     }
-    
+
     func testFlatJSONObject_uint() throws {
         //Arrange
         let sut: UInt = 1
@@ -72,7 +64,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is UInt)
         XCTAssertEqual(result as? UInt, sut)
     }
-    
+
     func testFlatJSONObject_uint8() throws {
         //Arrange
         let sut: UInt8 = 1
@@ -82,7 +74,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is UInt8)
         XCTAssertEqual(result as? UInt8, sut)
     }
-    
+
     func testFlatJSONObject_uint16() throws {
         //Arrange
         let sut: UInt16 = 1
@@ -92,7 +84,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is UInt16)
         XCTAssertEqual(result as? UInt16, sut)
     }
-    
+
     func testFlatJSONObject_uint32() throws {
         //Arrange
         let sut: UInt32 = 1
@@ -102,7 +94,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is UInt32)
         XCTAssertEqual(result as? UInt32, sut)
     }
-    
+
     func testFlatJSONObject_uint64() throws {
         //Arrange
         let sut: UInt64 = 1
@@ -112,7 +104,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is UInt64)
         XCTAssertEqual(result as? UInt64, sut)
     }
-    
+
     func testFlatJSONObject_double() throws {
         //Arrange
         let sut: Double = 1.23
@@ -122,7 +114,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Double)
         XCTAssertEqual(result as? Double, sut)
     }
-    
+
     func testFlatJSONObject_float() throws {
         //Arrange
         let sut: Float = 1.23
@@ -132,7 +124,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is Float)
         XCTAssertEqual(result as? Float, sut)
     }
-    
+
     func testFlatJSONObject_string() throws {
         //Arrange
         let sut: String = "some"
@@ -142,7 +134,7 @@ extension JSONPrimitiveConvertibleTests {
         XCTAssertTrue(result is String)
         XCTAssertEqual(result as? String, sut)
     }
-    
+
     func testFlatJSONObject_bool() throws {
         //Arrange
         let sut: Bool = true

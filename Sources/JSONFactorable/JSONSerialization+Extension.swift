@@ -1,11 +1,3 @@
-//
-//  JSONSerialization+Extension.swift
-//  JSONFactorable
-//
-//  Created by Bartłomiej Świerad on 18/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import Foundation
 
 extension JSONSerialization {

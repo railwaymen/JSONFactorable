@@ -1,16 +1,8 @@
-//
-//  AnyJSONConvertible.swift
-//  JSONFactorable
-//
-//  Created by Bartłomiej Świerad on 17/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import Foundation
 
 public struct AnyJSONConvertible: JSONConvertible {
     private(set) public var base: Any
-    
+
     ///
     /// Default initializer
     ///
@@ -20,7 +12,7 @@ public struct AnyJSONConvertible: JSONConvertible {
     public init<J>(_ base: J) where J: JSONConvertible {
         self.base = base
     }
-    
+
     ///
     /// Unwraps base value to JSONConvertible which isn't AnyJSONConvertible.
     /// Should never throw an error.
@@ -41,7 +33,7 @@ public struct AnyJSONConvertible: JSONConvertible {
         }
         return base
     }
-    
+
     ///
     /// Used internally to get flat objects acceptable by the `JSONSerialization` and to parse it to data.
     ///
@@ -55,7 +47,7 @@ public struct AnyJSONConvertible: JSONConvertible {
     public func flatJSONObject() throws -> Any {
         return try (self.base as? JSONConvertible)?.flatJSONObject() ?? self.base
     }
-    
+
     ///
     /// Merges `self` with another `AnyJSONConvertible` and returns it
     ///
@@ -110,7 +102,7 @@ extension AnyJSONConvertible: ExpressibleByIntegerLiteral {
 
 extension AnyJSONConvertible: ExpressibleByArrayLiteral {
     public typealias ArrayLiteralElement = AnyJSONConvertible
-    
+
     public init(arrayLiteral elements: ArrayLiteralElement...) {
         self.init(Array(elements))
     }
@@ -119,7 +111,7 @@ extension AnyJSONConvertible: ExpressibleByArrayLiteral {
 extension AnyJSONConvertible: ExpressibleByDictionaryLiteral {
     public typealias Key = String
     public typealias Value = AnyJSONConvertible
-    
+
     public init(dictionaryLiteral elements: (Key, Value)...) {
         self.init(Dictionary(uniqueKeysWithValues: elements))
     }

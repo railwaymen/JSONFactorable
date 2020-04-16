@@ -1,11 +1,3 @@
-//
-//  JSONConvertibleTests.swift
-//  JSONFactorable_Example
-//
-//  Created by Bartłomiej Świerad on 18/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import XCTest
 @testable import JSONFactorable
 
@@ -21,7 +13,7 @@ extension JSONConvertibleTests {
         //Assert
         XCTAssertEqual(result as? Int, 1)
     }
-    
+
     func testFlatJSONObject_optionalNone() throws {
         //Arrange
         let sut: Int? = .none
@@ -30,7 +22,7 @@ extension JSONConvertibleTests {
         //Assert
         XCTAssertTrue(result is NSNull)
     }
-    
+
     func testFlatJSONObject_URL() throws {
         //Arrange
         let sut = try XCTUnwrap(URL(string: "example.com"))
@@ -39,7 +31,7 @@ extension JSONConvertibleTests {
         //Assert
         XCTAssertEqual(result as? String, sut.absoluteString)
     }
-    
+
     func testFlatJSONObject_array() throws {
         //Arrange
         let sut = [AnyJSONConvertible(1), AnyJSONConvertible(2)]
@@ -48,7 +40,7 @@ extension JSONConvertibleTests {
         //Assert
         XCTAssertEqual(result as? [Int], [1, 2])
     }
-    
+
     func testFlatJSONObject_set() throws {
         //Arrange
         let sut = Set([1, 2])
@@ -60,7 +52,7 @@ extension JSONConvertibleTests {
         XCTAssertTrue(array.contains(1))
         XCTAssertTrue(array.contains(2))
     }
-    
+
     func testFlatJSONObject_dictionary() throws {
         //Arrange
         let sut = ["first": AnyJSONConvertible(1), "second": AnyJSONConvertible(2)]

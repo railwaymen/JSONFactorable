@@ -1,11 +1,3 @@
-//
-//  ObjectFactory.swift
-//  JSONFactorable_Tests
-//
-//  Created by Bartłomiej Świerad on 18/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import Foundation
 import JSONFactorable
 
@@ -13,7 +5,7 @@ struct ObjectFactory: JSONFactorable {
     var decoder: JSONDecoder {
         return JSONDecoder()
     }
-    
+
     func buildObject(
         id: Int64,
         name: String,
@@ -26,7 +18,7 @@ struct ObjectFactory: JSONFactorable {
         ]
         return try self.buildObject(of: jsonConvertible)
     }
-    
+
     func buildSubobject(
         name: String,
         price: Double

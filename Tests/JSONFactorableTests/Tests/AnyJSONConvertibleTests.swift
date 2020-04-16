@@ -1,11 +1,3 @@
-//
-//  AnyJSONConvertibleTests.swift
-//  JSONFactorable_Example
-//
-//  Created by Bartłomiej Świerad on 18/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import XCTest
 @testable import JSONFactorable
 
@@ -21,7 +13,7 @@ extension AnyJSONConvertibleTests {
         //Assert
         XCTAssertEqual(result as? Int, 1)
     }
-    
+
     func testUnwrappedValue_doubleWrappedValue() throws {
         //Arrange
         let sut = AnyJSONConvertible(AnyJSONConvertible(1))
@@ -42,7 +34,7 @@ extension AnyJSONConvertibleTests {
         //Assert
         XCTAssertEqual(result as? Int, 1)
     }
-    
+
     func testFlatJSONObject_intWrappedInArray() throws {
         //Arrange
         let sut = AnyJSONConvertible([1])
@@ -51,7 +43,7 @@ extension AnyJSONConvertibleTests {
         //Assert
         XCTAssertEqual(result as? [Int], [1])
     }
-    
+
     func testFlatJSONObject_intWrappedInDictionary() throws {
         //Arrange
         let sut = AnyJSONConvertible(["some": 1])
@@ -61,7 +53,7 @@ extension AnyJSONConvertibleTests {
         let resultDict = result as? [String: Any]
         XCTAssertEqual(resultDict?["some"] as? Int, 1)
     }
-    
+
     func testFlatJSONObject_anyJSONConvertibleIntWrappedInDictionary() throws {
         //Arrange
         let sut = AnyJSONConvertible(["some": AnyJSONConvertible(1)])
@@ -71,7 +63,7 @@ extension AnyJSONConvertibleTests {
         let resultDict = result as? [String: Int]
         XCTAssertEqual(resultDict?["some"], 1)
     }
-    
+
     func testFlatJSONObject_arrayWrappedInDictionary() throws {
         //Arrange
         let sut = AnyJSONConvertible(["some": [1]])
@@ -94,7 +86,7 @@ extension AnyJSONConvertibleTests {
         //Assert
         XCTAssertEqual(try result.flatJSONObject() as? [Int], [1, 2])
     }
-    
+
     func testMerge_twoSimpleDictionaries() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(["sut1": AnyJSONConvertible(1)])
@@ -107,7 +99,7 @@ extension AnyJSONConvertibleTests {
         XCTAssertEqual(resultDict?["sut1"], 1)
         XCTAssertEqual(resultDict?["sut2"], 2)
     }
-    
+
     func testMerge_twoDictionariesWithIdenticalKeys() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(["sut": AnyJSONConvertible(1)])
@@ -119,7 +111,7 @@ extension AnyJSONConvertibleTests {
         XCTAssertEqual(resultDict?.keys.count, 1)
         XCTAssertEqual(resultDict?["sut"], 1)
     }
-    
+
     func testMerge_simpleIntArrays() throws {
         //Arrange
         let sut1 = AnyJSONConvertible([1])
@@ -130,7 +122,7 @@ extension AnyJSONConvertibleTests {
             XCTAssertEqual(error as? JSONConversionError, JSONConversionError.objectsNotMergable)
         }
     }
-    
+
     func testMerge_simpleIntDicts() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(["sut1": 1])
@@ -141,7 +133,7 @@ extension AnyJSONConvertibleTests {
             XCTAssertEqual(error as? JSONConversionError, JSONConversionError.objectsNotMergable)
         }
     }
-    
+
     func testMerge_arrayAndDictionary() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(["sut1": AnyJSONConvertible(1)])
@@ -152,7 +144,7 @@ extension AnyJSONConvertibleTests {
             XCTAssertEqual(error as? JSONConversionError, JSONConversionError.objectsNotMergable)
         }
     }
-    
+
     func testMerge_twoInts() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(1)
@@ -163,7 +155,7 @@ extension AnyJSONConvertibleTests {
             XCTAssertEqual(error as? JSONConversionError, JSONConversionError.objectsNotMergable)
         }
     }
-    
+
     func testMerge_arrayAndInt() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(1)
@@ -174,7 +166,7 @@ extension AnyJSONConvertibleTests {
             XCTAssertEqual(error as? JSONConversionError, JSONConversionError.objectsNotMergable)
         }
     }
-    
+
     func testMerge_wrappedDictionaryWithWrappedObjectConvertibleToDictionary() throws {
         //Arrange
         let sut1 = AnyJSONConvertible(["someKey": AnyJSONConvertible("its value")])

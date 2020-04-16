@@ -1,11 +1,3 @@
-//
-//  JSONObjectTypeTests.swift
-//  JSONFactorable_Tests
-//
-//  Created by Bartłomiej Świerad on 18/12/2019.
-//  Copyright © 2019 Railwaymen. All rights reserved.
-//
-
 import XCTest
 @testable import JSONFactorable
 
@@ -23,7 +15,7 @@ extension JSONObjectTypeTests {
         //Assert
         XCTAssertEqual(result as? Int, 1)
     }
-    
+
     func testFlatJSONObject_throwsError() throws {
         //Arrange
         let thrownError = TestError()
@@ -42,7 +34,7 @@ extension JSONObjectTypeTests {
 private struct JSONObjectMock<T: JSONConvertible>: JSONObjectType {
     let jsonConvertibleReturnValue: T
     let jsonConvertibleThrowError: Error?
-    
+
     func jsonConvertible() throws -> JSONConvertible {
         if let error = self.jsonConvertibleThrowError {
             throw error

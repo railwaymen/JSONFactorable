@@ -18,7 +18,8 @@ public struct AnyJSONConvertible: JSONConvertible {
     /// Should never throw an error.
     ///
     /// - Throws:
-    ///   - `JSONConversionError.baseIsNotJSONConvertible` if base is not JSONConvertible. This indicates internal framework issue.
+    ///   - `JSONConversionError.baseIsNotJSONConvertible` if base is not JSONConvertible.
+    ///      This indicates internal framework issue.
     ///
     public func unwrappedValue() throws -> JSONConvertible {
         guard let base = self.base as? JSONConvertible else { throw JSONConversionError.baseIsNotJSONConvertible }
@@ -63,7 +64,8 @@ public struct AnyJSONConvertible: JSONConvertible {
         let rhsUnwrapped = try otherJSON.unwrappedValue()
         if let lhsArray = lhsUnwrapped as? [AnyJSONConvertible], let rhsArray = rhsUnwrapped as? [AnyJSONConvertible] {
             return AnyJSONConvertible(lhsArray + rhsArray)
-        } else if let lhsDict = lhsUnwrapped as? [String: AnyJSONConvertible], let rhsDict = rhsUnwrapped as? [String: AnyJSONConvertible] {
+        } else if let lhsDict = lhsUnwrapped as? [String: AnyJSONConvertible],
+            let rhsDict = rhsUnwrapped as? [String: AnyJSONConvertible] {
             return AnyJSONConvertible(lhsDict.merging(rhsDict) { lhsValue, _ in lhsValue })
         }
         throw JSONConversionError.objectsNotMergable

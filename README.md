@@ -1,4 +1,4 @@
-# JSONFactoryCore
+# JSONFactorable
 
 
 [![Package Validation Status](https://github.com/railwaymen/JSONFactorable/workflows/Package%20Validation/badge.svg)](https://github.com/railwaymen/JSONFactorable/actions)

@@ -175,9 +175,44 @@ extension AnyJSONConvertibleTests {
         let result = try sut1.merge(with: sut2)
         //Assert
         let dict = try XCTUnwrap(result.flatJSONObject() as? [String: Any])
+        XCTAssertEqual(dict.count, 3)
         XCTAssertEqual(dict["id"] as? Int64, 1)
         XCTAssertEqual(dict["name"] as? String, "My object")
         XCTAssertEqual(dict["someKey"] as? String, "its value")
+    }
+    
+    func testMerge_wrappedDictionaryWithNil() throws {
+        //Arrange
+        let sut1 = AnyJSONConvertible(["someKey": AnyJSONConvertible("its value")])
+        let sut2 = AnyJSONConvertible(CustomObject?.none)
+        //Act
+        let result = try sut1.merge(with: sut2)
+        //Assert
+        let dict = try XCTUnwrap(result.flatJSONObject() as? [String: Any])
+        XCTAssertEqual(dict.count, 1)
+        XCTAssertEqual(dict["someKey"] as? String, "its value")
+    }
+    
+    func testMerge_nilWithWrappedDictionary() throws {
+        //Arrange
+        let sut1 = AnyJSONConvertible(CustomObject?.none)
+        let sut2 = AnyJSONConvertible(["someKey": AnyJSONConvertible("its value")])
+        //Act
+        let result = try sut1.merge(with: sut2)
+        //Assert
+        let dict = try XCTUnwrap(result.flatJSONObject() as? [String: Any])
+        XCTAssertEqual(dict.count, 1)
+        XCTAssertEqual(dict["someKey"] as? String, "its value")
+    }
+    
+    func testMerge_nilWithNil() throws {
+        //Arrange
+        let sut1 = AnyJSONConvertible(CustomObject?.none)
+        let sut2 = AnyJSONConvertible([String: AnyJSONConvertible]?.none)
+        //Act
+        let result = try sut1.merge(with: sut2)
+        //Assert
+        XCTAssert(try result.flatJSONObject() is NSNull)
     }
 }
 

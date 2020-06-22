@@ -67,6 +67,10 @@ public struct AnyJSONConvertible: JSONConvertible {
         } else if let lhsDict = lhsUnwrapped as? [String: AnyJSONConvertible],
             let rhsDict = rhsUnwrapped as? [String: AnyJSONConvertible] {
             return AnyJSONConvertible(lhsDict.merging(rhsDict) { lhsValue, _ in lhsValue })
+        } else if try otherJSON.flatJSONObject() is NSNull {
+            return self
+        } else if try self.flatJSONObject() is NSNull {
+            return otherJSON
         }
         throw JSONConversionError.objectsNotMergable
     }
